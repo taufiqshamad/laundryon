@@ -1,0 +1,39 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::view('/', 'home')->name('home');
+Route::get('order/complete', 'OrderController@storeComplete')->name('order.storeComplete');
+Route::resource('order', 'OrderController');
+
+
+
+
+Route::get('services','BookingController@services')->name('services');
+Route::get('services/{type}', 'BookingController@bookingForm')->name('bookingForm');
+Route::post('book', 'BookingController@book')->name('book');
+// Route::view('lokasi','lokasi')->name('lokasi');
+Route::view('bengkel','bengkel')->name('bengkel');
+Route::view('booking-complete','bookingComplete')->name('bookingComplete');
+Route::get('account','UserController@account')->name('account');
+
+Route::get('admin/','AdminController@home')->name('admin.home');
+Route::post('admin/order/{id}/updateHarga', 'AdminController@updateHarga')->name('admin.updateHarga');
+Route::get('admin/order/{id}/complete', 'AdminController@completeOrder')->name('admin.completeOrder');
+
+Route::get('admin/login','AdminController@login')->name('admin.login');
+Route::post('admin/login', 'AdminController@auth')->name('admin.auth');
+Route::post('admin/logout', 'AdminController@logout')->name('admin.logout');
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
